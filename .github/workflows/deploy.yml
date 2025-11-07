@@ -1,4 +1,4 @@
-name:  waza
+name: Deploy Laravel to HostGator (simple)
 
 on:
   push:
@@ -12,19 +12,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy backend (Laravel)
+      - name: Deploy project to HostGator
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /
+          server-dir: /public_html/
           exclude: |
-            public/**
             */.git
-            /node_modules/
-            /docker/
-            /.github/
-            /tests/
+            */node_modules/*
+            */.github/*
+            */tests/*
             **/.env.example
-            **/README.md 
+            **/README.md
